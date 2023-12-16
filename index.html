@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Product Search</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        div {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        #search {
+            padding: 10px;
+            border: 2px solid rgb(91, 102, 201);
+            border-radius: 5px;
+            width: 60%;
+            font-size: 18px;
+            outline: none;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        header {
+            background: darkblue;
+            color: white;
+            padding: 20px;
+            font-size: 30px;
+            font-style: initial;
+            text-align: center;
+        }
+
+        #search-btnn {
+            position: relative;
+            top: 7px;
+            border: 2px solid rgb(91, 102, 201);
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        img {
+            width: 170px;
+            height: 200px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        button {
+            border: 1px solid rgb(0, 34, 187);
+            border-radius:  5px;
+            padding: 7px 5px 7px 5px;
+            background: rgb(0, 26, 255);
+            color: white;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:active {
+            background: rgb(0, 0, 49);
+        }
+
+        #copyButton {
+            margin-top: 10px;
+        }
+
+        /* Responsive styles */
+        @media only screen and (min-width: 4000px) {
+            .button-container {
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100%;
+            }
+
+            #copyButton {
+                margin-top: 0;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            header{
+                font-size: 20px;
+            }
+            #search::placeholder{
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>NERSISYAN FURNITURE</header>
+
+<div>
+    <label for="search"><span id="search-btnn" class="material-symbols-outlined">
+        search
+        </span></label>
+    <input type="text" id="search" oninput="filterProducts()" placeholder="Փնտրել Ապրանքի Համարը․․․">
+</div>
+
+<ul id="productList">
+    <li data-name="0001">
+        <div><img src="img/Դեկորատիվ/IMG-90bcdcecd1fc841d291e52427edca5b2-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Դեկորատիվ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0001</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0002">
+        <div><img src="img/Դեկորատիվ/IMG-c34f19257eb753bf5ca1ae27213c69a8-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Դեկորատիվ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0002</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0003">
+        <div><img src="img/Դեկորատիվ/IMG-f38bd4cd8ebff5c9362c4c53cb3828f3-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Դեկորատիվ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0003</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0004">
+        <div><img src="img/Դեկորատիվ/IMG-f7858adfe67f59570c1670aff9f8525d-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Դեկորատիվ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0004</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0005">
+        <div><img src="img/Դռներ/IMG-6b7e87c1a648f4a256b10bcf61d63cc7-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Դռներ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0005</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0006">
+        <div><img src="img/Դռներ/IMG-8f4433a231573721b5e2765c574f9abc-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Դռներ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0006</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0007">
+        <div><img src="img/Դռներ/IMG-de8759f829b07aa6265ac4d7c8c20c9e-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Դռներ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0007</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0008">
+        <div><img src="img/Դռներ/IMG-ec67c6a7bdbcbc367ab326f230f6cbc4-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Դռներ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0008</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0009">
+        <div><img src="img/Լոգարան/IMG-1cfb9d7e9958e0775b682102e0129c88-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Լոգարան</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0009</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0010">
+        <div><img src="img/Լոգարան/IMG-1e75610246160b50a0ad28363e6fd67b-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Լոգարան</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0010</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0011">
+        <div><img src="img/Լոգարան/IMG-342cbd07a4b3228d2dca794705dd018f-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Լոգարան</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0011</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0012">
+        <div><img src="img/Լոգարան/IMG-42434f89d9fcf355bc539d0fcbd1f7c4-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Լոգարան</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0012</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+
+    </li>
+    <li data-name="0013">
+        <div><img src="img/Լոգարան/IMG-85199099628b7a5fdf34319ef8c3ec6b-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Լոգարան</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0013</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0014">
+        <div><img src="img/Խոհանոց/IMG-0d927dc171b9886eaf87a657921a9d40-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0014</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0015">
+        <div><img src="img/Խոհանոց/IMG-221d5fc06746ad99bb8f79d828d61a2b-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0015</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0016">
+        <div><img src="img/Խոհանոց/IMG-4c2c623e4f77f68186bb7c8ad5fa5fcc-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0016</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0017">
+        <div><img src="img/Խոհանոց/IMG-4df0a886045e50e5bb4ba85acde2424d-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 00017</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0018">
+        <div><img src="img/Խոհանոց/IMG-6395ac3fea5ab10a9a29a4998b525d13-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0018
+        </p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0019">
+        <div><img src="img/Խոհանոց/IMG-6f269985a2c8eb56a94c4d762555f942-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0019</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0020">
+        <div><img src="img/Խոհանոց/IMG-812b6d51e03f2f1bb078a21ff18b0f3d-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0020</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0021">
+        <div><img src="img/Խոհանոց/IMG-8a9521b05cac87ea5de6cce03409ef19-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0021</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0022">
+        <div><img src="img/Խոհանոց/IMG-b0829b5369ce536c84ac4637a8d7b5cc-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0022</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0023">
+        <div><img src="img/Խոհանոց/IMG-de71084b94b65991a667f4f091c21983-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Խոհանոց</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0023
+        </p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0024">
+        <div><img src="img/Հյուրասենյակ/IMG-1819fb0cffde65a516eca1daa0b138a5-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Հյուրասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0024</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0025">
+        <div><img src="img/Հյուրասենյակ/IMG-8d0df24c2dd64d7b7d9e74ee13b8a5e6-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Հյուրասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0025</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0026">
+        <div><img src="img/Հյուրասենյակ/IMG-a01fc590917a846318f89b9116c4dfd7-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Հյուրասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0026</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0027">
+        <div><img src="img/Հյուրասենյակ/IMG-bfcf179d579656e05c55cc3f2803db82-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Հյուրասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0027</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0028">
+        <div><img src="img/Ննջասենյակ/IMG-0c4503448f0acc42a461385c0d44b6ed-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0028</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0029">
+        <div><img src="img/Ննջասենյակ/IMG-2182295250c9a9ed330022b77d79347e-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0029</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0030">
+        <div><img src="img/Ննջասենյակ/IMG-281c08b5f3e8e208e64b910a38b0a189-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0030</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0031">
+        <div><img src="img/Ննջասենյակ/IMG-38bd08de1431c4a67756c84176d06153-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0031</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0032">
+        <div><img src="img/Ննջասենյակ/IMG-6c361bf1132e40e056c3b0902aca4c2c-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0032</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0033">
+        <div><img src="img/Ննջասենյակ/IMG-6de420f7268d3166fd2bc506c1565c44-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0033</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0034">
+        <div><img src="img/Ննջասենյակ/IMG-7c19d83b71e01abe269fdd38d6ea42e5-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0034</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0035">
+        <div><img src="img/Ննջասենյակ/IMG-9f38744a32bcaa6d582a286c810d0a4f-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0035</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0036">
+        <div><img src="img/Ննջասենյակ/IMG-c94a9a08e386bb45aeca127791ef9201-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ/h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0036</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0037">
+        <div><img src="img/Ննջասենյակ/IMG-d2fd6f48437093efa11ba7c639a00f36-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0037</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0038">
+        <div><img src="img/Ննջասենյակ/IMG-df1e429de1d724923fc9d3758f4fb224-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0038</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0039">
+        <div><img src="img/Ննջասենյակ/IMG-e2cd4a3a6a7fefc6b7bdafec49463b9b-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Ննջասենյակ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0039</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0040">
+        <div><img src="img/Պահապաններ/IMG-2baeb7049dbd8274c700e4d1a8216d80-V.jpg" alt=""></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0040</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0041">
+        <div><img src="img/Պահապաններ/IMG-3516390a1c4a51f75217bbe0c7ba74be-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0041</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0042">
+        <div><img src="img/Պահապաններ/IMG-679252a51279724d73bd1666af2686fb-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0042</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0043">
+        <div><img src="img/Պահապաններ/IMG-9b2569338b8d84072a836d3a06bcfe39-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0043</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0044">
+        <div><img src="img/Պահապաններ/IMG-9b348c6178499997db27c8062be0ecec-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0044</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0045">
+        <div><img src="img/Պահապաններ/IMG-ae928546359689f5f67b6997c7b82abf-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0045</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0046">
+        <div><img src="img/Պահապաններ/IMG-b4fcd5c077bb0b914cb06170abf2ea85-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0046</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0047">
+        <div><img src="img/Պահապաններ/IMG-b677403fb74e9a3492138ae0c85e0db7-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0047</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0048">
+        <div><img src="img/Պահապաններ/IMG-baf6aef79251c2d16c6c1ef846be3268-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0048</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0049">
+        <div><img src="img/Պահապաններ/IMG-c1fd3117cb2c06ac92d7f33c580417d4-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0049</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+    <li data-name="0050">
+        <div><img src="img/Պահապաններ/IMG-cca186a7e2f5cef7753404b503003813-V.jpg"></div> 
+        <h1 style="text-align: center; margin: 0;">Պահարաններ</h1>
+        <p style="text-align: center; margin: 10px;">Ապրանքի Համարը - 0050</p>
+        <div class="button-container">
+            <button id="callButton">Զանգահարել</button>
+            <button id="copyButton" onclick="copyText()">Պատճենել<br />Հեռախոսահամարը<br /></button>
+
+        </div>
+    </li>
+   
+    
+
+    <!-- Add more products here -->
+</ul>
+
+<script>
+    function filterProducts() {
+        var searchValue = document.getElementById('search').value.toLowerCase();
+        var products = document.getElementById('productList').getElementsByTagName('li');
+
+        for (var i = 0; i < products.length; i++) {
+            var productName = products[i].dataset.name.toLowerCase();
+
+            if (productName.includes(searchValue)) {
+                products[i].style.display = 'block';
+            } else {
+                products[i].style.display = 'none';
+            }
+        }
+    }
+
+    document.getElementById('callButton').addEventListener('click', function() {
+        // Replace '123456789' with the phone number you want to dial
+        var phoneNumber = '077167686';
+        
+        // Check if the device supports the 'tel:' protocol
+        if ('open' in window && 'href' in document.createElement('a')) {
+            // Open the phone app with the specified number
+            window.open('tel:' + phoneNumber);
+        } else {
+            // Provide a fallback for devices that don't support 'tel:' protocol
+            alert('Sorry, your device does not support calling functionality.');
+        }
+    });
+    function copyText() {
+            /* Text to copy */
+            var textToCopy = "077167686";
+
+            /* Create a temporary input element */
+            var tempInput = document.createElement("input");
+            
+            /* Set the input value to the text to copy */
+            tempInput.value = textToCopy;
+
+            /* Append the input element to the document */
+            document.body.appendChild(tempInput);
+
+            /* Select the input text */
+            tempInput.select();
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Remove the temporary input element */
+            document.body.removeChild(tempInput);
+
+            /* Alert the user */
+            alert("Text copied: " + textToCopy);
+        }
+        
+</script>
+
+</body>
+</html>
